@@ -1,0 +1,19 @@
+{
+  "name": "amar-cjenovnik",
+  "version": "1.0.0",
+  "description": "Black Prince Drinks Menu",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["drinks", "menu", "cjenovnik"],
+  "author": "Amar",
+  "license": "MIT"
+}

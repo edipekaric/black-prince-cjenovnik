@@ -1,1 +1,528 @@
-aaa
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cjenik Pića</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px auto;
+            display: block;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .brand-name {
+            color: #d4af37;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .categories {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .category-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: rgba(255,255,255,0.9);
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .drink-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .drink-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .drink-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .drink-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .drink-category {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .drink-emoji {
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+
+        .price-section {
+            border-top: 2px solid #ecf0f1;
+            padding-top: 20px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px 0;
+        }
+
+        .price-size {
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .price-amount {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #27ae60;
+        }
+
+        .no-results {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 50px 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .brand-name {
+                font-size: 1.8rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .drinks-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .categories {
+                justify-content: flex-start;
+            }
+
+            .drink-card {
+                padding: 20px;
+            }
+
+            .drink-name {
+                font-size: 1.2rem;
+            }
+
+            .drink-emoji {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .brand-name {
+                font-size: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .category-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="pic.jpeg" alt="Black Prince Logo" class="logo">
+            <div class="brand-name">BLACK PRINCE</div>
+            <h1>🍹 Cjenovnik Pića</h1>
+            <p class="subtitle">Pronadji svoje omiljeno piće</p>
+        </header>
+
+        <div class="categories">
+            <button class="category-btn active" data-category="all">Sva Pića</button>
+            <button class="category-btn" data-category="kafa">Kafa</button>
+            <button class="category-btn" data-category="sokovi">Sokovi</button>
+            <button class="category-btn" data-category="alkohol">Alkoholna Pića</button>
+            <button class="category-btn" data-category="zestoko">Žestoka Pića</button>
+        </div>
+
+        <div class="drinks-grid" id="drinksGrid">
+            <!-- Drinks will be populated by JavaScript -->
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            Nema pića u ovoj kategoriji.
+        </div>
+    </div>
+
+    <script>
+        const drinks = [
+            // Kafa
+            {
+                name: "Kafa",
+                category: "kafa",
+                emoji: "☕",
+                prices: [{ size: "", price: "2.00 KM" }]
+            },
+            {
+                name: "Nescafé",
+                category: "kafa",
+                emoji: "☕",
+                prices: [{ size: "", price: "2.50 KM" }]
+            },
+            {
+                name: "Cappuccino",
+                category: "kafa",
+                emoji: "☕",
+                prices: [{ size: "", price: "2.50 KM" }]
+            },
+
+            // Sokovi i bezalkoholna pića
+            {
+                name: "Coca Cola",
+                category: "sokovi",
+                emoji: "🥤",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Cappy",
+                category: "sokovi",
+                emoji: "🧃",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Schweppes",
+                category: "sokovi",
+                emoji: "🥤",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Fanta",
+                category: "sokovi",
+                emoji: "🍊",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Pepsi",
+                category: "sokovi",
+                emoji: "🥤",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Cocta",
+                category: "sokovi",
+                emoji: "🥤",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Sprite",
+                category: "sokovi",
+                emoji: "🥤",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Ledeni Čaj",
+                category: "sokovi",
+                emoji: "🧊",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Vivia Limun",
+                category: "sokovi",
+                emoji: "🍋",
+                prices: [{ size: "", price: "2.50 KM" }]
+            },
+            {
+                name: "Voda",
+                category: "sokovi",
+                emoji: "💧",
+                prices: [{ size: "", price: "2.50 KM" }]
+            },
+            {
+                name: "Mineralna Voda",
+                category: "sokovi",
+                emoji: "🫧",
+                prices: [{ size: "", price: "2.50 KM" }]
+            },
+            {
+                name: "Richard Rooster",
+                category: "sokovi",
+                emoji: "🐔",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Exotic",
+                category: "sokovi",
+                emoji: "🌴",
+                prices: [{ size: "", price: "3.00 KM" }]
+            },
+            {
+                name: "Red Bull",
+                category: "sokovi",
+                emoji: "🪽",
+                prices: [{ size: "", price: "6.00 KM" }]
+            },
+
+            // Alkoholna pića
+            {
+                name: "Somersby",
+                category: "alkohol",
+                emoji: "🍺",
+                prices: [{ size: "", price: "5.00 KM" }]
+            },
+            {
+                name: "Tuborg",
+                category: "alkohol",
+                emoji: "🍺",
+                prices: [{ size: "", price: "3.50 KM" }]
+            },
+            {
+                name: "Carlsberg",
+                category: "alkohol",
+                emoji: "🍺",
+                prices: [{ size: "", price: "4.00 KM" }]
+            },
+            {
+                name: "Blanc",
+                category: "alkohol",
+                emoji: "🍺",
+                prices: [{ size: "", price: "4.00 KM" }]
+            },
+
+            // Vina
+            {
+                name: "Crno Vino",
+                category: "alkohol",
+                emoji: "🍷",
+                prices: [
+                    { size: "0.187 L", price: "5.00 KM" },
+                    { size: "0.75 L", price: "30.00 KM" }
+                ]
+            },
+            {
+                name: "Bijelo Vino",
+                category: "alkohol",
+                emoji: "🍷",
+                prices: [
+                    { size: "0.187 L", price: "5.00 KM" },
+                    { size: "0.75 L", price: "30.00 KM" }
+                ]
+            },
+
+            // Žestoka pića
+            {
+                name: "Tequila",
+                category: "zestoko",
+                emoji: "🥃",
+                prices: [{ size: "0.03 L", price: "2.00 KM" }]
+            },
+            {
+                name: "Baba Višnja",
+                category: "zestoko",
+                emoji: "🍒",
+                prices: [{ size: "0.03 L", price: "2.00 KM" }]
+            },
+            {
+                name: "Jägermeister",
+                category: "zestoko",
+                emoji: "🦌",
+                prices: [{ size: "0.03 L", price: "4.00 KM" }]
+            },
+            {
+                name: "Gin",
+                category: "zestoko",
+                emoji: "🍸",
+                prices: [{ size: "0.03 L", price: "4.00 KM" }]
+            },
+            {
+                name: "Jack Daniels",
+                category: "zestoko",
+                emoji: "🥃",
+                prices: [{ size: "0.03 L", price: "5.00 KM" }]
+            },
+            {
+                name: "Vodka",
+                category: "zestoko",
+                emoji: "🥃",
+                prices: [{ size: "0.03 L", price: "4.00 KM" }]
+            }
+        ];
+
+        let currentCategory = 'all';
+
+        function renderDrinks() {
+            const grid = document.getElementById('drinksGrid');
+            const noResults = document.getElementById('noResults');
+            
+            let filteredDrinks = drinks;
+
+            // Filter by category
+            if (currentCategory !== 'all') {
+                filteredDrinks = filteredDrinks.filter(drink => 
+                    drink.category === currentCategory
+                );
+            }
+
+            if (filteredDrinks.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+
+            grid.innerHTML = filteredDrinks.map(drink => `
+                <div class="drink-card">
+                    <div class="drink-header">
+                        <div>
+                            <div class="drink-name">${drink.name}</div>
+                            <div class="drink-category">${getCategoryName(drink.category)}</div>
+                        </div>
+                        <div class="drink-emoji">${drink.emoji}</div>
+                    </div>
+                    <div class="price-section">
+                        ${drink.prices.map(price => `
+                            <div class="price-item">
+                                <span class="price-size">${price.size}</span>
+                                <span class="price-amount">${price.price}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getCategoryName(category) {
+            const categoryNames = {
+                'kafa': 'Kafa',
+                'sokovi': 'Bezalkoholno',
+                'alkohol': 'Alkohol',
+                'zestoko': 'Žestoko'
+            };
+            return categoryNames[category] || category;
+        }
+
+        // Category filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentCategory = e.target.dataset.category;
+                renderDrinks();
+            });
+        });
+
+        // Initial render
+        renderDrinks();
+    </script>
+</body>
+</html>
