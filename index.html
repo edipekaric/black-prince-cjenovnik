@@ -65,23 +65,24 @@
 
         .categories {
             display: flex;
-            gap: 15px;
+            gap: 8px;
             margin-bottom: 30px;
-            overflow-x: auto;
-            padding-bottom: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .category-btn {
             background: rgba(255,255,255,0.2);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
+            padding: 8px 16px;
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.9rem;
         }
 
         .category-btn:hover, .category-btn.active {
@@ -223,7 +224,14 @@
             }
 
             .categories {
-                justify-content: flex-start;
+                gap: 6px;
+                justify-content: center;
+            }
+
+            .category-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                border-radius: 15px;
             }
 
             .drink-card {
@@ -257,9 +265,14 @@
                 font-size: 1.6rem;
             }
 
+            .categories {
+                gap: 4px;
+            }
+
             .category-btn {
-                padding: 10px 18px;
-                font-size: 0.9rem;
+                padding: 5px 10px;
+                font-size: 0.75rem;
+                border-radius: 12px;
             }
         }
     </style>
